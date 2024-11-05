@@ -1,0 +1,286 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "aiAccelerationModule": {
+      "type": "object",
+      "description": "Artificial Intelligence Acceleration Module specifications",
+      "sourceText": "5.3.10 人工智能加速模块",
+      "sourceHierarchy": ["5.3.10"],
+      "properties": {
+        "aiProcessor": {
+          "type": "string",
+          "enum": ["FP16", "BF16", "FP32", "FP64", "INT8", "INT16"],
+          "description": "Artificial intelligence acceleration processor supporting at least one of the specified precisions",
+          "sourceText": "具备人工智能加速处理器，计算精度宜至少支持 FP16、BF16、FP32、FP64、INT8 和 INT16 等中的 1 种",
+          "sourceHierarchy": ["5.3.10", "5.3.10(a)"]
+        },
+        "compliance": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "gmT0008": {
+                  "type": "boolean",
+                  "description": "Compliance with GM/T 0008 regulations",
+                  "sourceText": "人工智能加速处理器应符合 GM/T 0008 的相关规定",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(b)"]
+                }
+              },
+              "required": ["gmT0008"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "gbT37092": {
+                  "type": "boolean",
+                  "description": "Compliance with GB/T 37092 regulations",
+                  "sourceText": "加速处理器的密码模块应符合 GB/T 37092 或 GM/T 0028 的相关规定",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(b)"]
+                },
+                "gmT0028": {
+                  "type": "boolean",
+                  "description": "Compliance with GM/T 0028 regulations",
+                  "sourceText": "加速处理器的密码模块应符合 GB/T 37092 或 GM/T 0028 的相关规定",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(b)"]
+                }
+              },
+              "required": ["gbT37092", "gmT0028"]
+            }
+          ]
+        },
+        "interfaceRequirements": {
+          "type": "object",
+          "description": "Interface requirements for visual computing acceleration",
+          "sourceText": "对单推理卡或模块，宜配备可直接调用的接口实现视觉计算加速，具备视频解析、文本识别、语音分析等推理能力",
+          "sourceHierarchy": ["5.3.10", "5.3.10(c)"],
+          "properties": {
+            "capabilities": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["videoParsing", "textRecognition", "speechAnalysis"]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": ["capabilities"]
+        },
+        "inferenceCardPerformance": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "tFlops": {
+                  "type": "number",
+                  "minimum": 40,
+                  "description": "Sustained performance for inference card in TOPS (INT8)",
+                  "sourceText": "不小于 40 TOPS(INT8)",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(d)", "5.3.10(d)(1)"]
+                }
+              },
+              "required": ["tFlops"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tFLOPS": {
+                  "type": "number",
+                  "minimum": 20,
+                  "description": "Sustained performance for inference card in TFLOPS (FP16)",
+                  "sourceText": "不小于 20 TFLOPS(FP16)",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(d)", "5.3.10(d)(2)"]
+                }
+              },
+              "required": ["tFLOPS"]
+            }
+          ]
+        },
+        "trainingCardPerformance": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "tFLOPSFP16": {
+                  "type": "number",
+                  "minimum": 90,
+                  "description": "Sustained performance for training card in TFLOPS (FP16)",
+                  "sourceText": "不小于 90 TFLOPS(FP16)",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(e)", "5.3.10(e)(1)"]
+                }
+              },
+              "required": ["tFLOPSFP16"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tFLOPSFP32": {
+                  "type": "number",
+                  "minimum": 20,
+                  "description": "Sustained performance for training card in TFLOPS (FP32)",
+                  "sourceText": "不小于 20 TFLOPS(FP32)",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(e)", "5.3.10(e)(2)"]
+                }
+              },
+              "required": ["tFLOPSFP32"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tFLOPSFP64": {
+                  "type": "number",
+                  "minimum": 10,
+                  "description": "Sustained performance for training card in TFLOPS (FP64)",
+                  "sourceText": "不小于 10 TFLOPS(FP64)",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(e)", "5.3.10(e)(3)"]
+                }
+              },
+              "required": ["tFLOPSFP64"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "vectorPerformance": {
+                  "type": "object",
+                  "properties": {
+                    "tFLOPSFP64": {
+                      "type": "number",
+                      "minimum": 1,
+                      "description": "Vector performance in TFLOPS (FP64)",
+                      "sourceText": "矢量算力不低于 1TFLOPS(FP64)",
+                      "sourceHierarchy": ["5.3.10", "5.3.10(e)", "5.3.10(e)(4)"]
+                    },
+                    "tFLOPSFP32": {
+                      "type": "number",
+                      "minimum": 10,
+                      "description": "Vector performance in TFLOPS (FP32)",
+                      "sourceText": "矢量算力不低于 10TFLOPS(FP32)",
+                      "sourceHierarchy": ["5.3.10", "5.3.10(e)", "5.3.10(e)(4)"]
+                    },
+                    "tFLOPSFP16": {
+                      "type": "number",
+                      "minimum": 20,
+                      "description": "Vector performance in TFLOPS (FP16)",
+                      "sourceText": "矢量算力不低于 20TFLOPS(FP16)",
+                      "sourceHierarchy": ["5.3.10", "5.3.10(e)", "5.3.10(e)(4)"]
+                    }
+                  },
+                  "required": ["tFLOPSFP64", "tFLOPSFP32", "tFLOPSFP16"]
+                }
+              },
+              "required": ["vectorPerformance"]
+            }
+          ]
+        },
+        "migrationTool": {
+          "type": "boolean",
+          "description": "Provision of AI application migration tool supporting accuracy analysis of AI models",
+          "sourceText": "宜提供人工智能应用迁移工具，工具应支持人工智能模型的精度分析",
+          "sourceHierarchy": ["5.3.10", "5.3.10(f)"]
+        },
+        "serverRequirements": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "aiServerCluster": {
+                  "type": "boolean",
+                  "description": "Support for building an AI server cluster",
+                  "sourceText": "支持组建人工智能服务器集群",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(g)", "5.3.10(g)(1)"]
+                }
+              },
+              "required": ["aiServerCluster"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "highSpeedLink": {
+                  "type": "number",
+                  "minimum": 200,
+                  "description": "Bandwidth for high-speed links between AI processors in Gb/s",
+                  "sourceText": "支持不同服务器人工智能加速处理器间的高速链路，带宽不小于 200Gb/s",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(g)", "5.3.10(g)(2)"]
+                }
+              },
+              "required": ["highSpeedLink"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "highSpeedInterconnect": {
+                  "type": "number",
+                  "minimum": 100,
+                  "description": "Bidirectional interconnect speed between AI processors in GB/s",
+                  "sourceText": "支持服务器内人工智能加速处理器间的高速互联，双向互联速率不小于 100GB/s",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(g)", "5.3.10(g)(3)"]
+                }
+              },
+              "required": ["highSpeedInterconnect"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "enableSoftware": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["operatorProgrammingLanguage", "programmingFramework", "operatorLibrary", "compiler", "runtimeComponent", "inferenceEngine"]
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "description": "Supported enabling software types for AI acceleration",
+                  "sourceText": "支持的使能软件应包括:算子编程语言及编程框架、算子库、编译器、运行时组件、推理引擎",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(g)", "5.3.10(g)(4)"]
+                }
+              },
+              "required": ["enableSoftware"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "diagnosticSupport": {
+                  "type": "boolean",
+                  "description": "Support for diagnostics, analysis, reporting, isolation, and recovery during training failures",
+                  "sourceText": "在训练过程中出现故障时，服务器支持诊断、分析、上报、隔离和恢复功能",
+                  "sourceHierarchy": ["5.3.10", "5.3.10(g)", "5.3.10(g)(5)"]
+                }
+              },
+              "required": ["diagnosticSupport"]
+            }
+          ]
+        }
+      },
+      "required": ["aiProcessor", "compliance", "interfaceRequirements", "inferenceCardPerformance", "trainingCardPerformance", "migrationTool", "serverRequirements"]
+    },
+    "dpu": {
+      "type": "object",
+      "description": "DPU specifications",
+      "sourceText": "5.3.11 DPU",
+      "sourceHierarchy": ["5.3.11"],
+      "properties": {
+        "networkCapabilities": {
+          "type": "boolean",
+          "description": "Support for network connection, access, data exchange, and control functionalities",
+          "sourceText": "支持网络连接、网络访问、数据交换和网络管控功能",
+          "sourceHierarchy": ["5.3.11", "5.3.11(a)"]
+        },
+        "offloadSupport": {
+          "type": "boolean",
+          "description": "Support for network and storage offloading",
+          "sourceText": "支持网络卸载和存储卸载",
+          "sourceHierarchy": ["5.3.11", "5.3.11(b)"]
+        },
+        "dpuCardSpeed": {
+          "type": "number",
+          "minimum": 10,
+          "description": "DPU card speed in Gbps",
+          "sourceText": "DPU 网卡速率不小于 10Gbps",
+          "sourceHierarchy": ["5.3.11", "5.3.11(c)"]
+        }
+      },
+      "required": ["networkCapabilities", "offloadSupport", "dpuCardSpeed"]
+    }
+  }
+}

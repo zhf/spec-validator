@@ -1,0 +1,26 @@
+{
+  "aiAccelerationModule": {
+    "aiProcessor": "FP16",
+    "compliance": {
+      "gmT0008": true
+    },
+    "interfaceRequirements": {
+      "capabilities": ["videoParsing", "textRecognition", "speechAnalysis"]
+    },
+    "inferenceCardPerformance": {
+      "tFlops": 45
+    },
+    "trainingCardPerformance": {
+      "tFLOPSFP32": 25
+    },
+    "migrationTool": true,
+    "serverRequirements": {
+      "highSpeedLink": 250
+    }
+  },
+  "dpu": {
+    "networkCapabilities": true,
+    "offloadSupport": true,
+    "dpuCardSpeed": 20
+  }
+}

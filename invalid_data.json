@@ -1,0 +1,26 @@
+{
+  "aiAccelerationModule": {
+    "aiProcessor": "INVALID_PRECISION",
+    "compliance": {
+      "gbT37092": true
+    },
+    "interfaceRequirements": {
+      "capabilities": ["invalidCapability"]
+    },
+    "inferenceCardPerformance": {
+      "tFlops": 30
+    },
+    "trainingCardPerformance": {
+      "tFLOPSFP32": 15
+    },
+    "migrationTool": "yes",
+    "serverRequirements": {
+      "highSpeedLink": 150
+    }
+  },
+  "dpu": {
+    "networkCapabilities": false,
+    "offloadSupport": "true",
+    "dpuCardSpeed": 5
+  }
+}
